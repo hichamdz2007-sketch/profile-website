@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hicham | Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+<meta name="description" content="Hicham – Front-End Web Developer specializing in HTML, CSS, JavaScript and modern UI animations.">
+<meta name="keywords" content="Front-End Developer, HTML, CSS, JavaScript, Portfolio">
+<meta name="author" content="Hicham">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" href="123.ico">
+
+</head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const slider = document.getElementById("stackSlider");
+
+  function update(){
+    const cards = [...slider.children];
+
+    cards.forEach(card => card.className = "card hidden");
+
+    if(cards[0]) cards[0].classList.replace("hidden","front");
+    if(cards[1]) cards[1].classList.replace("hidden","mid");
+    if(cards[2]) cards[2].classList.replace("hidden","back");
+  }
+
+  function next(){
+    slider.appendChild(slider.firstElementChild);
+    update();
+  }
+
+  update();
+  setInterval(next, 1500);
+});
+</script>
+
+<body>
+
+<header class="header">
+  <div class="logo">Eren Yeager.</div>
+  <nav>
+    <a class="active">Home</a>
+    <a>facebook</a>
+    <a>instagram</a>
+    <a>x-twitter</a>
+    <a>youtube</a>
+  </nav>
+</header>
+
+<section class="hero reveal">
+  <div class="hero-slider">
+    <div class="stack-slider" id="stackSlider">
+      <div class="card"><img src="11.PNG"></div>
+      <div class="card"><img src="22.jfif"></div>
+      <div class="card"><img src="33.jpg"></div>
+      <div class="card"><img src="44.jpg"></div>
+    </div>
+  </div>
+
+  <div class="hero-text">
+    <h1>Hi,It's <span>Hicham</span></h1>
+    <h2 class="typing-text">I'm a <span></span></h2>
+    <p>If you modify it and want the application to use your modifications</p>
+    
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</section>
+
+<center>
+<section class="skills reveal">
+  <h2>skills</h2>
+  <div class="skills-box">
+    <span class="skill html">HTML</span>
+    <span class="skill css">CSS</span>
+    <span class="skill js">JavaScript</span>
+  </div>
+</section>
+</center>
+<section class="about reveal">
+  <div class="about-wrapper">
+
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        I'm <span>Hicham</span>, a passionate Front-End Developer focused on
+        building elegant, modern and interactive web experiences.
+      </p>
+      <p>
+        I turn ideas into clean code with smooth animations and strong UI/UX.
+      </p>
+    </div>
+
+     <div class="about-stats">
+
+      <div class="stat-card" data-target="1">
+        <i class="fas fa-briefcase"></i>
+        <h3 class="count">0</h3>
+        <p>Year Experience</p>
+      </div>
+
+      <div class="stat-card" data-target="10">
+        <i class="fas fa-code"></i>
+        <h3 class="count">0</h3>
+        <p>Projects Completed</p>
+      </div>
+
+      <div class="stat-card" data-target="100">
+        <i class="fas fa-fire"></i>
+        <h3 class="count">0</h3>
+        <p>Motivation</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="projects reveal">
+  <h2>Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <img src="assets/images/1.jpg" alt="Project 1">
+      <div class="project-content">
+        <h3>Portfolio Website</h3>
+        <p>Modern personal portfolio built with HTML, CSS and JavaScript.</p>
+        <div class="project-links">
+          <a href="#">Live</a>
+          <a href="#">Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="assets/images/2.jpg" alt="Project 2">
+      <div class="project-content">
+        <h3>Landing Page</h3>
+        <p>Responsive landing page with clean UI and smooth animations.</p>
+        <div class="project-links">
+          <a href="#">Live</a>
+          <a href="#">Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="assets/images/3.jpg" alt="Project 3">
+      <div class="project-content">
+        <h3>Image Slider</h3>
+        <p>Interactive 3D image slider using pure JavaScript.</p>
+        <div class="project-links">
+          <a href="#">Live</a>
+          <a href="#">Code</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="timeline reveal">
+  <h2>Experience</h2>
+  <div class="timeline-container">
+
+    <div class="timeline-item">
+      <span class="year">2023</span>
+      <div class="content">
+        <h3>Started Web Development</h3>
+        <p>Learned HTML & CSS and built my first static websites.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="year">2024</span>
+      <div class="content">
+        <h3>JavaScript & Interactivity</h3>
+        <p>Worked with JavaScript to build sliders, animations and UI logic.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="year">2025</span>
+      <div class="content">
+        <h3>Professional Portfolio</h3>
+        <p>Building modern, responsive and animated portfolio projects.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+// Scroll Reveal Animation
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+<script>
+const counters = document.querySelectorAll('.count');
+let started = false;
+
+function startCount() {
+  if (started) return;
+  started = true;
+
+  counters.forEach(counter => {
+    const target = +counter.parentElement.dataset.target;
+    let count = 0;
+    const speed = target / 60;
+
+    const update = () => {
+      count += speed;
+      if (count < target) {
+        counter.textContent = Math.floor(count);
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = target + (target === 100 ? "%" : "+");
+      }
+    };
+    update();
+  });
+}
+
+const aboutSection = document.querySelector('.about');
+
+const observerStats = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    startCount();
+  }
+}, { threshold: 0.5 });
+
+observerStats.observe(aboutSection);
+</script>
+
+</body>
+</html>
