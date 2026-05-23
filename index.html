@@ -1,103 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Hicham | erwin</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-<meta name="description" content="Hicham – Front-End Web Developer specializing in HTML, CSS, JavaScript and modern UI animations.">
-<meta name="keywords" content="Front-End Developer, HTML, CSS, JavaScript, Portfolio">
-<meta name="author" content="Hicham">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="icon" href="123.ico">
-
+  <meta charset="UTF-8">
+  <title>Hicham | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <meta name="description" content="Hicham – Front-End Web Developer specializing in HTML, CSS, JavaScript and modern UI animations.">
+  <meta name="keywords" content="Front-End Developer, HTML, CSS, JavaScript, Portfolio">
+  <meta name="author" content="Hicham">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="123.ico">
 </head>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const slider = document.getElementById("stackSlider");
-
-  function update(){
-    const cards = [...slider.children];
-
-    cards.forEach(card => card.className = "card hidden");
-
-    if(cards[0]) cards[0].classList.replace("hidden","front");
-    if(cards[1]) cards[1].classList.replace("hidden","mid");
-    if(cards[2]) cards[2].classList.replace("hidden","back");
-  }
-
-  function next(){
-    slider.appendChild(slider.firstElementChild);
-    update();
-  }
-
-  update();
-  setInterval(next, 1500);
-});
-</script>
-
 <body>
 
-<header class="header">
-  <div class="logo">Erwin .</div>
-  <nav>
-    <a class="active">Home</a>
-    
-  </nav>
-</header>
-
-<section class="hero reveal">
-  <div class="hero-slider">
-    <div class="stack-slider" id="stackSlider">
-      <div class="card"><img src="11.PNG"></div>
-      <div class="card"><img src="22.jfif"></div>
-      <div class="card"><img src="33.jpg"></div>
-      <div class="card"><img src="44.jpg"></div>
+  <header class="header">
+    <div class="logo">Eren Yeager.</div>
+    <nav></nav>
+    <div class="menu-avatar-btn" onclick="toggleSidebar()">
+      <img src="33.jpg" alt="Menu" />
     </div>
+  </header>
+
+  <div id="sidebarMenu" class="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()">&times;</a>
+    <a href="#home" onclick="toggleSidebar()">Home</a>
+    <a href="#about-me" onclick="toggleSidebar()">who I am ?</a>
+    <a href="#projects" onclick="toggleSidebar()">Projects (After Effects)</a>
+    <a href="#contact" onclick="toggleSidebar()">contact with me</a>
   </div>
 
-  <div class="hero-text">
-    <h1>Hi,It's <span>Hicham</span></h1>
-    <h2 class="typing-text">I'm a <span></span></h2>
-    <p>If you modify it and want the application to use your modifications</p>
+  <section class="hero" id="home"> 
     
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/hicham-zita-6a720a3a1/"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/hichamdz2007-sketch"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.instagram.com/hicham_legend_47/"><i class="fab fa-instagram"></i></a>
+    <div class="hero-slider">
+      <div class="stack-slider" id="stackSlider">
+        <div class="card front">
+          <img src="11.PNG" alt="Eren 1">
+        </div>
+        <div class="card mid">
+          <img src="22.jfif" alt="Eren 2">
+        </div>
+        <div class="card back">
+          <img src="33.jpg" alt="Eren 3">
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
-<center>
-<section class="skills reveal">
-  <h2>skills</h2>
+    <div class="hero-text">
+      <h1>Hi, It's <span>Hicham</span></h1>
+      <h2 class="typing-text">I'm a <span id="typingElement">Web Designer</span></h2>
+      <p>welcome</p>
+      
+      <div class="social-icons" id="contact">
+        <a href="https://www.linkedin.com/in/hicham-zita-6a720a3a1/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/hichamdz2007-sketch" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100071003701147" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/hicham_zita_/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://discord.com/users/1402968024377458749" target="_blank"><i class="fab fa-discord"></i></a>
+      </div>
+    </div>
+
+  </section>
+
   <div class="skills-box">
-    <span class="skill html">HTML</span>
-    <span class="skill css">CSS</span>
-    <span class="skill js">JavaScript</span>
-  </div>
-</section>
-</center>
-<section class="about reveal">
-  <div class="about-wrapper">
-
-    <div class="about-text">
-      <h2>About Me</h2>
-      <p>
-        I'm <span>Hicham</span>, a passionate Front-End Developer focused on
-        building elegant, modern and interactive web experiences.
-      </p>
-      <p>
-        I turn ideas into clean code with smooth animations and strong UI/UX.
-      </p>
+    <div class="skill html">
+      <div class="img-wrapper">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+      </div>
+      <span>HTML</span>
     </div>
 
-     <div class="about-stats">
+    <div class="skill css">
+      <div class="img-wrapper">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+      </div>
+      <span>CSS</span>
+    </div>
+
+    <div class="skill js">
+      <div class="img-wrapper">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+      </div>
+      <span>JavaScript</span>
+    </div>
+
+    <div class="skill ae">
+      <div class="img-wrapper">
+        <img src="after effects.png" alt="After Effects">
+      </div>
+      <span>After Effects</span>
+    </div>
+  </div>
+
+  <section class="about reveal">
+    <div class="about-wrapper">
+      <div class="about-text">
+        <h2 id="about-me">About Me</h2>
+        <p>
+          I'm <span>Hicham</span>, a passionate Front-End Developer focused on
+          building elegant, modern and interactive web experiences.
+        </p>
+        <p>
+          I turn ideas into clean code with smooth animations and strong UI/UX.
+        </p>
+      </div>
+
+      <div class="about-stats">
 
       <div class="stat-card" data-target="1">
         <i class="fas fa-briefcase"></i>
@@ -120,134 +128,202 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 
   </div>
-</section>
+  </section>
 
+  <section class="videol" id="projects"> 
+    <h2>Video Reel</h2>
+    <video id="myVideo" autoplay muted loop playsinline>
+      <source src="1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
 
-<section class="projects reveal">
-  <h2>Projects</h2>
-  <div class="projects-grid">
+  <section class="projects reveal">
+    <h1>Web Projects</h1>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="1.jpg" alt="Project 1">
+        <div class="project-content">
+          <h3>Portfolio Website</h3>
+          <p>Modern personal portfolio built with HTML, CSS and JavaScript.</p>
+          <div class="project-links">
+            <a href="#">Live</a>
+            <a href="#">Code</a>
+          </div>
+        </div>
+      </div>
 
-    <div class="project-card">
-      <img src="23.png" alt="Project 1">
-      <div class="project-content">
-        <h3>Portfolio Website</h3>
-        <p>Modern personal portfolio built with HTML, CSS and JavaScript.</p>
-        <div class="project-links">
-          <a href="https://hicham-erwi.netlify.app/">Click here</a>
-          <a href="#">Code</a>
+      <div class="project-card">
+        <img src="2.jpg" alt="Project 2">
+        <div class="project-content">
+          <h3>Landing Page</h3>
+          <p>Responsive landing page with clean UI and smooth animations.</p>
+          <div class="project-links">
+            <a href="#">Live</a>
+            <a href="#">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="3.jpg" alt="Project 3">
+        <div class="project-content">
+          <h3>Image Slider</h3>
+          <p>Interactive 3D image slider using pure JavaScript.</p>
+          <div class="project-links">
+            <a href="#">Live</a>
+            <a href="#">Code</a>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="project-card">
-      <img src="assets/images/2.jpg" alt="Project 2">
-      <div class="project-content">
-        <h3>Landing Page</h3>
-        <p>Responsive landing page with clean UI and smooth animations.</p>
-        <div class="project-links">
-          <a href="#">Live</a>
-          <a href="#">Code</a>
+  <section class="timeline reveal">
+    <h2>Experience</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <span class="year">2023</span>
+        <div class="content">
+          <h3>Started Web Development</h3>
+          <p>Learned HTML & CSS and built my first static websites.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="year">2024</span>
+        <div class="content">
+          <h3>JavaScript & Interactivity</h3>
+          <p>Worked with JavaScript to build sliders, animations and UI logic.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="year">2025</span>
+        <div class="content">
+          <h3>Professional Portfolio</h3>
+          <p>Building modern, responsive and animated portfolio projects.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="year">2026</span>
+        <div class="content">
+          <h3>Visual Effects & Motion Portfolio</h3>
+          <p>Bringing imagination to life with cutting-edge After Effects animations and cinematic visual effects.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="project-card">
-      <img src="assets/images/3.jpg" alt="Project 3">
-      <div class="project-content">
-        <h3>Image Slider</h3>
-        <p>Interactive 3D image slider using pure JavaScript.</p>
-        <div class="project-links">
-          <a href="#">Live</a>
-          <a href="#">Code</a>
-        </div>
-      </div>
-    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. منطق دوران كروت الهيرو ثلاثية الأبعاد (معدل وثابت على سرعة 1500ms)
+      const slider = document.getElementById("stackSlider");
+      if (slider) {
+        function update() {
+          const cards = [...slider.children];
+          cards.forEach(card => card.className = "card hidden");
 
-  </div>
-</section>
+          if(cards[0]) cards[0].className = "card front";
+          if(cards[1]) cards[1].className = "card mid";
+          if(cards[2]) cards[2].className = "card back";
+        }
 
-<section class="timeline reveal">
-  <h2>Experience</h2>
-  <div class="timeline-container">
+        function next() {
+          slider.appendChild(slider.firstElementChild);
+          update();
+        }
 
-    <div class="timeline-item">
-      <span class="year">2023</span>
-      <div class="content">
-        <h3>Started Web Development</h3>
-        <p>Learned HTML & CSS and built my first static websites.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <span class="year">2024</span>
-      <div class="content">
-        <h3>JavaScript & Interactivity</h3>
-        <p>Worked with JavaScript to build sliders, animations and UI logic.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <span class="year">2025</span>
-      <div class="content">
-        <h3>Professional Portfolio</h3>
-        <p>Building modern, responsive and animated portfolio projects.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<script>
-// Scroll Reveal Animation
-const reveals = document.querySelectorAll('.reveal');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('active');
-    }
-  });
-}, { threshold: 0.15 });
-
-reveals.forEach(el => observer.observe(el));
-</script>
-
-<script>
-const counters = document.querySelectorAll('.count');
-let started = false;
-
-function startCount() {
-  if (started) return;
-  started = true;
-
-  counters.forEach(counter => {
-    const target = +counter.parentElement.dataset.target;
-    let count = 0;
-    const speed = target / 60;
-
-    const update = () => {
-      count += speed;
-      if (count < target) {
-        counter.textContent = Math.floor(count);
-        requestAnimationFrame(update);
-      } else {
-        counter.textContent = target + (target === 100 ? "%" : "+");
+        update();
+        setInterval(next, 1500); // ⚡ سرعة دوران الكروت الخاطفة والسريعة
       }
-    };
-    update();
-  });
-}
 
-const aboutSection = document.querySelector('.about');
+      // 2. حركة تأثير الكتابة السريعة والمصلحة (Typing Effect)
+      const typingElement = document.getElementById("typingElement");
+      if (typingElement) {
+        const text = "Web Designer";
+        let index = 0;
+        let typingTimeout; // متغير لتخزين التوقيت لمنع تداخل الحروف
 
-const observerStats = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) {
-    startCount();
-  }
-}, { threshold: 0.5 });
+        typingElement.innerHTML = "";
+        
+        function type() {
+          if (index < text.length) {
+            typingElement.innerHTML += text.charAt(index);
+            index++;
+            typingTimeout = setTimeout(type, 80); // ⚡ سرعة طباعة الحروف (سريعة وانسيابية كالمعتاد)
+          } else {
+            // عند انتهاء الكلمة، ننتظر ثانيتين ثم نمسح التوقيت القديم ونعيد بانتظام
+            setTimeout(() => {
+              clearTimeout(typingTimeout); 
+              typingElement.innerHTML = "";
+              index = 0;
+              type();
+            }, 2000); 
+          }
+        }
+        type();
+      }
+    });
 
-observerStats.observe(aboutSection);
-</script>
+    // 3. دالة التحكم في فتح وإغلاق القائمة الجانبية
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebarMenu");
+      if(sidebar) {
+        sidebar.classList.toggle("active");
+      }
+    }
+
+    // 4. مراقب التمرير لظهور العناصر
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // 5. عداد الإحصائيات الذكي عند التمرير
+    const counters = document.querySelectorAll('.count');
+    let started = false;
+
+    function startCount() {
+      if (started) return;
+      started = true;
+
+      counters.forEach(counter => {
+        const target = +counter.parentElement.dataset.target;
+        let count = 0;
+        const speed = target / 60;
+
+        const update = () => {
+          count += speed;
+          if (count < target) {
+            counter.textContent = Math.floor(count);
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = target + (target === 100 ? "%" : "+");
+          }
+        };
+        update();
+      });
+    }
+
+    const aboutSection = document.querySelector('.about');
+    if (aboutSection) {
+      const observerStats = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          startCount();
+        }
+      }, { threshold: 0.5 });
+      observerStats.observe(aboutSection);
+    }
+  </script>
 
 </body>
 </html>
