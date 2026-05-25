@@ -132,10 +132,32 @@
 
   <section class="videol" id="projects"> 
     <h2>Video Reel</h2>
-    <video id="myVideo" autoplay muted loop playsinline controls>
-      <source src="1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="custom-video-container" id="videoContainer">
+      <video id="myVideo" autoplay muted loop playsinline>
+        <source src="1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="custom-video-controls" id="videoControls">
+        <div class="video-progress-container" id="videoProgressContainer">
+          <div class="video-progress-bar" id="videoProgressBar"></div>
+        </div>
+        <div class="video-controls-buttons">
+          <div class="video-left-controls">
+            <button class="video-control-btn" id="videoPlayPause" title="Play/Pause"><i class="fas fa-play"></i></button>
+            <button class="video-control-btn" id="videoRewind" title="Rewind 10s"><i class="fas fa-backward"></i></button>
+            <button class="video-control-btn" id="videoForward" title="Forward 10s"><i class="fas fa-forward"></i></button>
+            <div class="video-volume-container">
+              <button class="video-control-btn" id="videoMute" title="Mute/Unmute"><i class="fas fa-volume-mute"></i></button>
+              <input type="range" class="video-volume-slider" id="videoVolume" min="0" max="1" step="0.05" value="0">
+            </div>
+            <span class="video-time-display"><span id="videoCurrentTime">0:00</span> / <span id="videoDuration">0:00</span></span>
+          </div>
+          <div class="video-right-controls">
+            <button class="video-control-btn" id="videoFullScreen" title="Fullscreen"><i class="fas fa-expand"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="projects reveal">
@@ -265,6 +287,207 @@
           }
         }
         type();
+      }
+
+      // 6. أزرار التحكم المخصصة للفيديو (Custom Video Controls Logic)
+      const video = document.getElementById("myVideo");
+      const videoContainer = document.getElementById("videoContainer");
+      const videoControls = document.getElementById("videoControls");
+      const videoPlayPause = document.getElementById("videoPlayPause");
+      const videoRewind = document.getElementById("videoRewind");
+      const videoForward = document.getElementById("videoForward");
+      const videoMute = document.getElementById("videoMute");
+      const videoVolume = document.getElementById("videoVolume");
+      const videoCurrentTime = document.getElementById("videoCurrentTime");
+      const videoDuration = document.getElementById("videoDuration");
+      const videoFullScreen = document.getElementById("videoFullScreen");
+      const videoProgressBar = document.getElementById("videoProgressBar");
+      const videoProgressContainer = document.getElementById("videoProgressContainer");
+
+      if (video && videoContainer && videoControls) {
+        let controlsTimeout;
+
+        const showControls = () => {
+          videoControls.classList.add("visible");
+          videoContainer.style.cursor = "default";
+          clearTimeout(controlsTimeout);
+          if (!video.paused) {
+            controlsTimeout = setTimeout(() => {
+              videoControls.classList.remove("visible");
+              videoContainer.style.cursor = "none";
+            }, 2500);
+          }
+        };
+
+        const togglePlay = () => {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        };
+
+        // Click play/pause button
+        videoPlayPause.addEventListener("click", (e) => {
+          e.stopPropagation();
+          togglePlay();
+        });
+        
+        // Click video to play/pause
+        video.addEventListener("click", togglePlay);
+
+        // Update play/pause icons on state change
+        video.addEventListener("play", () => {
+          videoPlayPause.innerHTML = '<i class="fas fa-pause"></i>';
+          showControls();
+        });
+        
+        video.addEventListener("pause", () => {
+          videoPlayPause.innerHTML = '<i class="fas fa-play"></i>';
+          videoControls.classList.add("visible");
+          videoContainer.style.cursor = "default";
+          clearTimeout(controlsTimeout);
+        });
+
+        // Skip backward (10 seconds)
+        videoRewind.addEventListener("click", (e) => {
+          e.stopPropagation();
+          video.currentTime = Math.max(0, video.currentTime - 10);
+          showControls();
+        });
+
+        // Skip forward (10 seconds)
+        videoForward.addEventListener("click", (e) => {
+          e.stopPropagation();
+          video.currentTime = Math.min(video.duration || 0, video.currentTime + 10);
+          showControls();
+        });
+
+        // Mute / Unmute
+        const toggleMute = () => {
+          video.muted = !video.muted;
+          if (video.muted) {
+            videoVolume.value = 0;
+            videoMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
+          } else {
+            videoVolume.value = video.volume || 0.5;
+            videoMute.innerHTML = video.volume > 0.5 ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-down"></i>';
+          }
+        };
+
+        videoMute.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleMute();
+          showControls();
+        });
+
+        // Volume slider change
+        videoVolume.addEventListener("input", (e) => {
+          const val = parseFloat(e.target.value);
+          video.volume = val;
+          if (val === 0) {
+            video.muted = true;
+            videoMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
+          } else {
+            video.muted = false;
+            if (val > 0.5) {
+              videoMute.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+              videoMute.innerHTML = '<i class="fas fa-volume-down"></i>';
+            }
+          }
+        });
+        videoVolume.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+
+        // Format time display
+        const formatTime = (secs) => {
+          if (isNaN(secs) || secs === Infinity) return "0:00";
+          const minutes = Math.floor(secs / 60);
+          const seconds = Math.floor(secs % 60);
+          return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        };
+
+        // Update progress bar & current time
+        video.addEventListener("timeupdate", () => {
+          const pct = video.duration ? (video.currentTime / video.duration) * 100 : 0;
+          videoProgressBar.style.width = `${pct}%`;
+          videoCurrentTime.textContent = formatTime(video.currentTime);
+        });
+
+        // Set duration when metadata is loaded
+        const setDuration = () => {
+          videoDuration.textContent = formatTime(video.duration);
+        };
+
+        if (video.readyState >= 1) {
+          setDuration();
+        } else {
+          video.addEventListener("loadedmetadata", setDuration);
+        }
+
+        // Seek on progress bar click
+        videoProgressContainer.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const rect = videoProgressContainer.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const pct = Math.max(0, Math.min(1, clickX / rect.width));
+          video.currentTime = pct * (video.duration || 0);
+          showControls();
+        });
+
+        // Full Screen Toggle
+        const toggleFullScreen = () => {
+          if (!document.fullscreenElement) {
+            videoContainer.requestFullscreen().catch(err => {
+              console.error(`Fullscreen request failed: ${err.message}`);
+            });
+          } else {
+            document.exitFullscreen();
+          }
+        };
+
+        videoFullScreen.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleFullScreen();
+        });
+
+        // Update full screen icons
+        document.addEventListener("fullscreenchange", () => {
+          if (document.fullscreenElement === videoContainer) {
+            videoFullScreen.innerHTML = '<i class="fas fa-compress"></i>';
+            videoContainer.classList.add("is-fullscreen");
+          } else {
+            videoFullScreen.innerHTML = '<i class="fas fa-expand"></i>';
+            videoContainer.classList.remove("is-fullscreen");
+          }
+        });
+
+        // Events to show/hide controls
+        videoContainer.addEventListener("mousemove", showControls);
+        videoContainer.addEventListener("mouseenter", showControls);
+        videoContainer.addEventListener("mouseleave", () => {
+          clearTimeout(controlsTimeout);
+          if (!video.paused) {
+            videoControls.classList.remove("visible");
+          }
+        });
+
+        // Initialize state icons
+        if (!video.paused) {
+          videoPlayPause.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+          videoPlayPause.innerHTML = '<i class="fas fa-play"></i>';
+        }
+
+        if (video.muted) {
+          videoVolume.value = 0;
+          videoMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+          videoVolume.value = video.volume;
+          videoMute.innerHTML = video.volume > 0.5 ? '<i class="fas fa-volume-up"></i>' : '<i class="fas fa-volume-down"></i>';
+        }
       }
     });
 
